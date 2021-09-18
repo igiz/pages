@@ -5,10 +5,10 @@ import plug from '../assets/plug.svg'
 import computer from '../assets/computer.svg';
 import console from '../assets/console.svg';
 
-const Toolbar = styled.div`
+const Toolbar = styled.div<{ height: string }>`
     display: flex;
     flex-direction: row;
-    height: 6%;
+    height: ${props => props.height};
     width: 100%;
     background-color: #F5F0F0;
     box-shadow: inset 0 0 3px #111010b0;
@@ -39,9 +39,9 @@ const SmallImage = styled.img`
     padding: 0 0.5rem 0 0.5rem;
 `;
 
-const DesktopToolbar: React.FC = () => {
+const DesktopToolbar: React.FC<{ height: string }> = ({ height }) => {
 
-    return <Toolbar>
+    return <Toolbar height={height}>
         <Left>
             <SmallImage src={computer} />
             <AppBar>

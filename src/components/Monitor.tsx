@@ -11,19 +11,17 @@ const Frame = styled.div<{ color: string, frameOutline: string }>`
     height: 726px;
 `;
 
-const Stand = styled.div<{ color: string, frameOutline: string }>`
-    height: 90px;
-    width: 170px;
+const Pillar = styled.div<{ color: string, frameOutline: string }>`
+    height: 80px;
+    width: 150px;
     background-color: ${props => props.color};
-    box-shadow: 3px 4px 0px 0px ${props => props.frameOutline};
 `;
 
-const StandBar = styled.div<{ frameOutline: string }>`
-    height: 25px;
-    width: 700px;
+const Surface = styled.div<{ frameOutline: string }>`
+    height: 35px;
+    width: 800px;
     background-color: ${props => props.color};
-    border-radius: 15px;
-    box-shadow: 3px 4px 0px 0px  ${props => props.frameOutline};
+    border-radius: 5px;
 `;
 
 const Screen = styled.div<{ borderColor: string }>`
@@ -40,10 +38,17 @@ const Monitor = styled.div`
     justify-content: center;
 `;
 
+const Stand: React.FC<{ frameColor: string, frameOutline: string }> = ({ frameColor, frameOutline }) => {
+    return <>
+        <Pillar color={frameColor} frameOutline={frameOutline} />
+        <Surface color={frameColor} frameOutline={frameOutline} />
+    </>
+}
+
 const SleekMonitor: React.FC = ({ children }) => {
 
-    const frameOutline = '#b4afaf';
-    const frameColor = '#000000';
+    const frameOutline = '#000000';
+    const frameColor = '#545564';
 
     return <Monitor>
         <Frame color={frameColor} frameOutline={frameOutline}>
@@ -51,8 +56,7 @@ const SleekMonitor: React.FC = ({ children }) => {
                 {children}
             </Screen>
         </Frame>
-        <Stand color={frameColor} frameOutline={frameOutline} />
-        <StandBar color={frameColor} frameOutline={frameOutline} />
+        <Stand frameColor={'#000000'} frameOutline={'#ffffff'} />
     </Monitor>
 
 }

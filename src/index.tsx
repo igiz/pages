@@ -9,7 +9,7 @@ ReactDOM.render(
   <React.StrictMode>
     <SleekMonitor>
       <Computer>
-        <Console name='CvApp - Zygimantas Raugas' />
+        <Console name='CvApp - Zygimantas Raugas' dimensions={{ height: '350px', width: '650px' }} />
       </Computer >
     </SleekMonitor>
   </React.StrictMode >,

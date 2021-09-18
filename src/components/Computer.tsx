@@ -5,6 +5,7 @@ import duck from '../assets/duck.svg';
 import cursor from '../assets/cursor.svg';
 import folder from '../assets/folder.svg';
 import computer from '../assets/computer-shiny.svg';
+import github from '../assets/github.svg';
 
 const OperatingSystem = styled.div`
     display: flex;
@@ -22,9 +23,9 @@ const Desktop = styled.div`
     cursor: url(${cursor}) , auto;
 `;
 
-const Wallpaper = styled.div`
+const Wallpaper = styled.div<{ height: string }>`
     position: relative;
-    height: 94%;
+    height: ${props => props.height};
     width: 100%;
 `;
 
@@ -39,6 +40,7 @@ const Logo = styled.div`
     display: flex;
     position: absolute;
     bottom: 0;
+    padding-bottom: 2%;
     padding-left: 0%;
 `;
 
@@ -52,29 +54,30 @@ const IconText = styled.p`
     margin: 0;
 `;
 
-const Grid = styled.div`
+const Grid = styled.div<{ rows: number, columns: number }>`
     position: absolute;
     display: grid;
     width: 100%;
     height: 100%;
-    padding: 1% 0 0 2%;
-    grid-template-columns: repeat(10, 8%);
-    grid-template-rows: repeat(8, 9%);
+    grid-template-columns: repeat(${props => props.columns}, 8%);
+    grid-template-rows: repeat(${props => props.rows}, 8%);
     grid-auto-flow: column;
-    grid-row-gap: 4%;
-    grid-column-gap: 2%;
+    grid-row-gap: 20pt;
+    grid-column-gap: 20pt;
 `;
 
-const FlexContainer = styled.div`
-    display: flex;
-    flex-direction: column;
+const Link = styled.a <{ row?: number, column?: number }> `
+    ${props => props.row ? `grid-row: ${props.row};` : ''}
+    ${props => props.column ? `grid-column: ${props.column};` : ''}
+    padding-left: 10pt;
+    text-align: center;
 `;
 
-const Icon: React.FC<{ iconText: string, iconImage: string }> = ({ iconText, iconImage }) => {
-    return <FlexContainer>
+const Icon: React.FC<{ iconText: string, iconImage: string, link: string, column?: number, row?: number }> = ({ iconText, iconImage, link, row, column }) => {
+    return <Link href={link} target='_blank' rel='noreferrer' row={row} column={column}>
         <IconImage src={iconImage} />
         <IconText>{iconText}</IconText>
-    </FlexContainer>
+    </Link>
 }
 
 const SystemLogo: React.FC = () => {
@@ -85,15 +88,19 @@ const SystemLogo: React.FC = () => {
 }
 
 const Computer: React.FC = ({ children }) => {
+    const rows = 8;
+    const columns = 10;
+
     return (
         <OperatingSystem>
             <Desktop>
-                <DesktopToolbar />
-                <Wallpaper>
+                <DesktopToolbar height="6%" />
+                <Wallpaper height="94%">
                     <SystemLogo />
-                    <Grid>
-                        <Icon iconText="Computer" iconImage={computer} />
-                        <Icon iconText="Super Secret" iconImage={folder} />
+                    <Grid rows={rows} columns={columns}>
+                        <Icon iconText="Computer" iconImage={computer} link='' />
+                        <Icon iconText="Super Secret" iconImage={folder} link='' />
+                        <Icon iconText="Source Code" iconImage={github} link='https://github.com/igiz/pages/tree/master' row={rows} column={columns} />
                     </Grid>
                     {children}
                 </Wallpaper>
