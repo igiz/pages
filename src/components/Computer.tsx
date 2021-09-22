@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
+
+/** Third party imports above**/
 import DesktopToolbar from './Toolbar';
 import duck from '../assets/duck.svg';
 import cursor from '../assets/cursor.svg';
@@ -24,6 +26,7 @@ const Desktop = styled.div`
 `;
 
 const Wallpaper = styled.div<{ height: string }>`
+    display: flex;
     position: relative;
     height: ${props => props.height};
     width: 100%;
@@ -57,19 +60,22 @@ const IconText = styled.p`
 const Grid = styled.div<{ rows: number, columns: number }>`
     position: absolute;
     display: grid;
-    width: 100%;
-    height: 100%;
-    grid-template-columns: repeat(${props => props.columns}, 8%);
-    grid-template-rows: repeat(${props => props.rows}, 8%);
+    width: 99%;
+    height: 99%;
+    grid-template-columns: repeat(${props => props.columns}, ${props => (99 - (props.columns * 2)) / props.columns}%);
+    grid-template-rows: repeat(${props => props.rows}, ${props => (99 - (props.rows * 2)) / props.rows}%);
     grid-auto-flow: column;
-    grid-row-gap: 20pt;
-    grid-column-gap: 20pt;
+    grid-row-gap: 2%;
+    grid-column-gap: 2%;
+    padding-top: 1%;
+    padding-left: 1%;
 `;
 
 const Link = styled.a <{ row?: number, column?: number }> `
+    width: 100%;
     ${props => props.row ? `grid-row: ${props.row};` : ''}
     ${props => props.column ? `grid-column: ${props.column};` : ''}
-    padding-left: 10pt;
+    padding: 2%;
     text-align: center;
 `;
 
@@ -87,20 +93,18 @@ const SystemLogo: React.FC = () => {
     </Logo>
 }
 
-const Computer: React.FC = ({ children }) => {
-    const rows = 8;
-    const columns = 10;
-
+const Computer: React.FC<{ dimensions: { rows: number, columns: number } }> = ({ children, dimensions }) => {
     return (
         <OperatingSystem>
             <Desktop>
                 <DesktopToolbar height="6%" />
                 <Wallpaper height="94%">
                     <SystemLogo />
-                    <Grid rows={rows} columns={columns}>
+                    <Grid rows={dimensions.rows} columns={dimensions.columns}>
                         <Icon iconText="Computer" iconImage={computer} link='' />
                         <Icon iconText="Super Secret" iconImage={folder} link='' />
-                        <Icon iconText="Source Code" iconImage={github} link='https://github.com/igiz/pages/tree/master' row={rows} column={columns} />
+                        {/** Push to the very end of the grid**/}
+                        <Icon iconText="Source Code" iconImage={github} link='https://github.com/igiz/pages/tree/master' row={dimensions.rows} column={dimensions.columns} />
                     </Grid>
                     {children}
                 </Wallpaper>

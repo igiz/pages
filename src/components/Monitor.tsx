@@ -31,7 +31,7 @@ const Screen = styled.div<{ borderColor: string }>`
     border: 3px solid ${props => props.borderColor};
 `;
 
-const Monitor = styled.div`
+const MonitorContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,20 +45,20 @@ const Stand: React.FC<{ frameColor: string, frameOutline: string }> = ({ frameCo
     </>
 }
 
-const SleekMonitor: React.FC = ({ children }) => {
+const Monitor: React.FC = ({ children }) => {
 
     const frameOutline = '#000000';
     const frameColor = '#545564';
 
-    return <Monitor>
+    return <MonitorContainer>
         <Frame color={frameColor} frameOutline={frameOutline}>
             <Screen borderColor={frameOutline}>
                 {children}
             </Screen>
         </Frame>
         <Stand frameColor={'#000000'} frameOutline={'#ffffff'} />
-    </Monitor>
+    </MonitorContainer>
 
 }
 
-export default SleekMonitor;
+export default Monitor;

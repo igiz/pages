@@ -3,15 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Computer from './components/Computer';
 import Console from './components/Console';
-import SleekMonitor from './components/Monitor'
+import Monitor from './components/Monitor';
+import CvApp from './components/CvApp';
 
 ReactDOM.render(
   <React.StrictMode>
-    <SleekMonitor>
-      <Computer>
-        <Console name='CvApp - Zygimantas Raugas' dimensions={{ height: '350px', width: '650px' }} />
+    <Monitor>
+      <Computer dimensions={{ rows: 8, columns: 9 }}>
+        <Console name='CvApp - Zygimantas Raugas' dimensions={{ height: '450px', width: '750px' }}>
+          <CvApp />
+        </Console>
       </Computer >
-    </SleekMonitor>
+    </Monitor>
   </React.StrictMode >,
   document.getElementById('app')
 );
