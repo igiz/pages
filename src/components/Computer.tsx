@@ -79,6 +79,18 @@ const Link = styled.a <{ row?: number, column?: number }> `
     text-align: center;
 `;
 
+const RotatingImage = styled.img`
+    animation: flip 20s steps(360) infinite;
+    @keyframes flip {
+        from {
+            transform: rotate3d(0, 1, 0, 0deg);
+        }
+        to {
+            transform: rotate3d(0, 1, 0, 360deg);
+        }
+    }
+`;
+
 const Icon: React.FC<{ iconText: string, iconImage: string, link: string, column?: number, row?: number }> = ({ iconText, iconImage, link, row, column }) => {
     return <Link href={link} target='_blank' rel='noreferrer' row={row} column={column}>
         <IconImage src={iconImage} />
@@ -88,7 +100,7 @@ const Icon: React.FC<{ iconText: string, iconImage: string, link: string, column
 
 const SystemLogo: React.FC = () => {
     return <Logo>
-        <img src={duck} title='Quack' alt='Mr Duck' />
+        <RotatingImage src={duck} title='Quack' alt='Mr Duck' />
         <LogoText>QUACKOS 0.3</LogoText>
     </Logo>
 }
