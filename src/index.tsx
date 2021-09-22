@@ -10,7 +10,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Monitor>
       <Computer dimensions={{ rows: 8, columns: 9 }}>
-        <Console name='CvApp - Zygimantas Raugas' dimensions={{ height: '450px', width: '750px' }}>
+        <Console name='CvApp - Zygimantas Raugas' dimensions={{ height: '450px', width: '950px' }}>
           <CvApp />
         </Console>
       </Computer >

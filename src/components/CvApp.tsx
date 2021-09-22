@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { NavLink } from '../types/interfaces';
-import linkConfig from '../links.json'
+import linkConfig from '../links.json';
+import profile from '../assets/profile.jpg';
 
 const ColoredSpan = styled.span<{ color: string }>`
     color: ${props => props.color};
@@ -28,7 +29,7 @@ const ScrollSpan = styled.span<{ color: string, steps: number }>`
 
     @keyframes typewriter {
         from { width: 0% }
-        to { width: 65% }
+        to { width: 32% }
     }
 
     @keyframes blink-caret {
@@ -37,9 +38,55 @@ const ScrollSpan = styled.span<{ color: string, steps: number }>`
     }
 `;
 
-const ConsoleContainer = styled.div`
+const FlexContainer = styled.div<{ direction: "row" | "column" }>`
     display: flex;
+    flex-direction: ${props => props.direction};
+    flex-basis: 100%;
+`;
+
+const ContentsContainer = styled.div`
+    flex: 3;
+    padding: 0.5rem 0.5rem;
+    border-left: 0.1rem dashed white;
+    border-top: 0.1rem dashed white;
+
+    p {
+        color: #A83A33
+    }
+`;
+
+const SmallImage = styled.img`
+    width: 120px;
+    height: 103px;
+    border: 0.1rem solid white;
+    margin: 1rem;
+`;
+
+const NavigationContainer = styled.div`
+    flex: 1;
     flex-direction: column;
+    font-size: 12pt;
+
+    * {
+        margin-left: 0.5em;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+        :hover {
+            color: #76C7F5;
+            text-decoration: underline;
+            font-size: 13pt;
+        }
+        :hover:before {
+            content: ">"
+        }
+
+        :hover:after{
+            content: "<";
+        }
+    }
 `;
 
 const ConsoleText: React.FC<{ message: string }> = ({ message }) => {
@@ -51,19 +98,39 @@ const ConsoleText: React.FC<{ message: string }> = ({ message }) => {
 
 const CvApp: React.FC = () => {
     const navigationLinks: NavLink[] = linkConfig.links;
-    return <ConsoleContainer>
+    return <FlexContainer direction={"column"}>
         <ConsoleText message={'Hello there stranger.......... My name is Ziggy'} />
-        <div>
-            <ColoredSpan color="white">What would you like to know?</ColoredSpan>
-            <table id="nav">
-                {navigationLinks.map(item => <tr>
-                    <td>
-                        <a href={item.link}>{item.text}</a>
-                    </td>
-                </tr>)}
-            </table>
-        </div>
-    </ConsoleContainer>
+        <FlexContainer direction={"row"}>
+            <NavigationContainer>
+                <ColoredSpan color="white">What would you like to know?</ColoredSpan>
+                <table id="nav">
+                    {navigationLinks.map(item => <tr>
+                        <td>
+                            <a href={item.link}>{item.text}</a>
+                        </td>
+                    </tr>)}
+                </table>
+            </NavigationContainer>
+            <ContentsContainer>
+                <FlexContainer direction={"row"}>
+                    <SmallImage src={profile} />
+                    <FlexContainer direction={"column"}>
+                        <ColoredSpan color={"white"}>About Me</ColoredSpan>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Maecenas sit amet est vitae tortor faucibus vehicula suscipit at neque.
+                            Nulla eget efficitur leo. Pellentesque ut neque in tortor tincidunt hendrerit ut ut ante.
+                            Suspendisse sodales lectus in sodales semper. Maecenas elit orci, condimentum vitae tellus ut, malesuada feugiat arcu. Nunc euismod tempor vehicula. Duis sem felis,
+                            accumsan non elementum vitae, ornare non dolor. Proin sit amet mauris metus. Quisque sit amet accumsan diam. Aliquam rutrum justo vel risus ultrices, v
+                            el malesuada magna pretium. Etiam eget dictum ante. Aliquam lacinia, enim in luctus congue, tellus leo laoreet lacus, in volutpat justo orci ut lorem.
+                            Proin pellentesque dignissim diam, a accumsan sem suscipit volutpat.
+
+                            ♪┏(・o･)┛♪┗ ( ･o･) ┓♪
+                        </p>
+                    </FlexContainer>
+                </FlexContainer>
+            </ContentsContainer>
+        </FlexContainer>
+    </FlexContainer>
 }
 
 export default CvApp;
