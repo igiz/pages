@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, { useContext } from 'react';
 import Clock from './Clock';
 import plug from '../assets/plug.svg'
 import computer from '../assets/computer.svg';
-import console from '../assets/console.svg';
+import { AppContext } from '../contexts/AppContext';
 
 const Toolbar = styled.div<{ height: string }>`
     display: flex;
@@ -31,6 +31,12 @@ const AppBar = styled.div`
     display: flex;
     align-items: center;
     padding: 0 0.5em 0 0.5em;
+    p {
+        width: auto;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 `;
 
 const SmallImage = styled.img`
@@ -40,14 +46,19 @@ const SmallImage = styled.img`
 `;
 
 const DesktopToolbar: React.FC<{ height: string }> = ({ height }) => {
+    const { state } = useContext(AppContext);
 
     return <Toolbar height={height}>
         <Left>
             <SmallImage src={computer} />
-            <AppBar>
-                <SmallImage src={console} />
-                <p>CvApp - Zygimantas ...</p>
-            </AppBar>
+            {
+                Object.values(state.running).map(item =>
+                    <AppBar>
+                        <SmallImage src={item.appLogo} />
+                        <p>{item.name}</p>
+                    </AppBar>
+                )
+            }
         </Left>
         <Right>
             <SmallImage src={plug} />

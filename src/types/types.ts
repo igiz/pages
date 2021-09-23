@@ -5,5 +5,6 @@ export type NavLink = {
 
 export type ProcessInfo = {
     name: string,
-    appId: string
+    appId: string,
+    appLogo: string;
 }

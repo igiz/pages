@@ -60,6 +60,12 @@ const Circle = styled.div`
   height: 15px;
   background-color: #FB9632;
   border-radius: 50%;
+  transition: background-color 1s , border-radius 1s, height 1s;
+  :hover {
+        background-color: #ff0000;
+        border-radius: 0;
+        height: 7px;
+  }
 `;
 
 const ConsoleHeader: React.FC<{ appInfo: ProcessInfo }> = ({ appInfo }) => {
