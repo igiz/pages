@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { NavLink } from '../types/interfaces';
+import { NavLink } from '../types/types';
 import linkConfig from '../links.json';
 import profile from '../assets/profile.jpg';
 
@@ -15,7 +15,7 @@ const ConsoleLine = styled.p`
     }
 `;
 
-const ScrollSpan = styled.span<{ color: string, steps: number }>`
+const ScrollSpan = styled.span<{ color: string, charCount: number }>`
     color: ${props => props.color};
     display: inline-flex;
     overflow: hidden;
@@ -24,12 +24,12 @@ const ScrollSpan = styled.span<{ color: string, steps: number }>`
     white-space: nowrap;
 
     animation:
-        typewriter 3s steps(${props => props.steps}, end),
+        typewriter 3s steps(${props => props.charCount}, end),
         blink-caret 1s step-end infinite;
 
     @keyframes typewriter {
-        from { width: 0% }
-        to { width: 32% }
+        from { width: 0 }
+        to { width: ${props => props.charCount / 2.5}em } // This calculation is such a hack for now , whoops
     }
 
     @keyframes blink-caret {
@@ -57,8 +57,9 @@ const ContentsContainer = styled.div`
 
 const SmallImage = styled.img`
     width: 120px;
-    height: 103px;
+    height: 100px;
     border: 0.1rem solid white;
+    border-radius: 5px;
     margin: 1rem;
 `;
 
@@ -73,12 +74,13 @@ const NavigationContainer = styled.div`
 
     a {
         text-decoration: none;
-        color: white;
+        color: #ffffff;
+
         :hover {
             color: #76C7F5;
             text-decoration: underline;
-            font-size: 13pt;
         }
+
         :hover:before {
             content: ">"
         }
@@ -92,7 +94,7 @@ const NavigationContainer = styled.div`
 const ConsoleText: React.FC<{ message: string }> = ({ message }) => {
     return <ConsoleLine>
         <ColoredSpan color={'#33A846'}>[user@home~]</ColoredSpan>
-        <ScrollSpan steps={message.length} color={'#A83A33'}>{message}</ScrollSpan>
+        <ScrollSpan charCount={message.length} color={'#A83A33'}>{message}</ScrollSpan>
     </ConsoleLine>
 }
 
@@ -123,9 +125,9 @@ const CvApp: React.FC = () => {
                             accumsan non elementum vitae, ornare non dolor. Proin sit amet mauris metus. Quisque sit amet accumsan diam. Aliquam rutrum justo vel risus ultrices, v
                             el malesuada magna pretium. Etiam eget dictum ante. Aliquam lacinia, enim in luctus congue, tellus leo laoreet lacus, in volutpat justo orci ut lorem.
                             Proin pellentesque dignissim diam, a accumsan sem suscipit volutpat.
-
-                            ♪┏(・o･)┛♪┗ ( ･o･) ┓♪
                         </p>
+                        <p>(This section will be filled soon , I promise)</p>
+                        <p>♪┏(・o･)┛♪┗ ( ･o･) ┓♪</p>
                     </FlexContainer>
                 </FlexContainer>
             </ContentsContainer>

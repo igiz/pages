@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, { useContext } from 'react';
 
 /** Third party imports above**/
 import DesktopToolbar from './Toolbar';
@@ -8,6 +8,10 @@ import cursor from '../assets/cursor.svg';
 import folder from '../assets/folder.svg';
 import computer from '../assets/computer-shiny.svg';
 import github from '../assets/github.svg';
+import console from '../assets/console.svg';
+import { AppContext } from '../contexts/AppContext';
+import { Actions } from '../types/actions';
+import { CvAppMain } from '../types/appconstants';
 
 const OperatingSystem = styled.div`
     display: flex;
@@ -80,19 +84,19 @@ const Link = styled.a <{ row?: number, column?: number }> `
 `;
 
 const RotatingImage = styled.img`
-    animation: flip 20s steps(360) infinite;
+    animation: flip 10s steps(360) infinite;
     @keyframes flip {
         from {
             transform: rotate3d(0, 1, 0, 0deg);
         }
         to {
-            transform: rotate3d(0, 1, 0, 360deg);
+            transform: rotate3d(0, 1, 0, -360deg);
         }
     }
 `;
 
-const Icon: React.FC<{ iconText: string, iconImage: string, link: string, column?: number, row?: number }> = ({ iconText, iconImage, link, row, column }) => {
-    return <Link href={link} target='_blank' rel='noreferrer' row={row} column={column}>
+const Icon: React.FC<{ iconText: string, iconImage: string, link?: string, action?: () => void, column?: number, row?: number }> = ({ iconText, iconImage, row, column, link, action }) => {
+    return <Link href={link} onClick={action} target='_blank' rel='noreferrer' row={row} column={column}>
         <IconImage src={iconImage} />
         <IconText>{iconText}</IconText>
     </Link>
@@ -106,6 +110,8 @@ const SystemLogo: React.FC = () => {
 }
 
 const Computer: React.FC<{ dimensions: { rows: number, columns: number } }> = ({ children, dimensions }) => {
+    const { dispatch } = useContext(AppContext);
+
     return (
         <OperatingSystem>
             <Desktop>
@@ -113,10 +119,11 @@ const Computer: React.FC<{ dimensions: { rows: number, columns: number } }> = ({
                 <Wallpaper height="94%">
                     <SystemLogo />
                     <Grid rows={dimensions.rows} columns={dimensions.columns}>
-                        <Icon iconText="Computer" iconImage={computer} link='' />
-                        <Icon iconText="Super Secret" iconImage={folder} link='' />
+                        <Icon iconText="Computer" iconImage={computer} />
+                        <Icon iconText="Super Secret" iconImage={folder} />
+                        <Icon iconText="CV App" iconImage={console} action={() => dispatch(Actions.Open(CvAppMain))} />
                         {/** Push to the very end of the grid**/}
-                        <Icon iconText="Source Code" iconImage={github} link='https://github.com/igiz/pages/tree/master' row={dimensions.rows} column={dimensions.columns} />
+                        <Icon iconText="Source Code" iconImage={github} link={'https://github.com/igiz/pages/tree/master'} row={dimensions.rows} column={dimensions.columns} />
                     </Grid>
                     {children}
                 </Wallpaper>

@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import Draggable from "react-draggable";
 import styled from "styled-components";
+import { AppContext } from "../contexts/AppContext";
+import { Actions } from "../types/actions";
+import { ProcessInfo } from "../types/types";
 
 const WindowContainer = styled.div`
     display: flex;
@@ -17,25 +20,23 @@ const WindowHeader = styled.div`
     display: flex;
     flex-direction: row-reverse;
     background-color: #36ADAD;
-    height: 1.5rem;
+    min-height: 1.5rem;
     width: 100%;
-    border-top: 0.2rem solid #36ADAD;
-    border-left: 0.2rem solid #36ADAD;
-    border-right: 0.2rem solid #36ADAD;
+    padding: 0.2rem;
 `;
 
 const MainContainer = styled.div<{ height: number | string, width: number | string }>`
     width: ${props => props.width};
     height: ${props => props.height};
     position: relative;
-    left: 20%;
+    left: 15%;
     top: 10%;
 `;
 
 const HeaderButton = styled.div`
     display: flex;
-    height: 80%;
-    width: 3%;
+    height: 25px;
+    width: 25px;
     background-color: #292323;
     border-radius: 20%;
     justify-content: center;
@@ -55,23 +56,28 @@ const HeaderText = styled.p`
 `;
 
 const Circle = styled.div`
-  width: 50%;
-  height: 50%;
+  width: 15px;
+  height: 15px;
   background-color: #FB9632;
   border-radius: 50%;
 `;
 
-const Console: React.FC<{ name: string, dimensions: { height: number | string, width: number | string } }> = ({ name, children, dimensions }) => {
-    return <Draggable bounds='parent'>
+const ConsoleHeader: React.FC<{ appInfo: ProcessInfo }> = ({ appInfo }) => {
+    var { dispatch } = useContext(AppContext);
+    return <WindowHeader className={"handle"}>
+        <HeaderButton>
+            <Circle onMouseDown={() => dispatch(Actions.Close(appInfo))} />
+        </HeaderButton>
+        <HeaderTitle>
+            <HeaderText>{appInfo.name}</HeaderText>
+        </HeaderTitle>
+    </WindowHeader>
+}
+
+const Console: React.FC<{ appInfo: ProcessInfo, dimensions: { height: number | string, width: number | string } }> = ({ appInfo, children, dimensions }) => {
+    return <Draggable bounds='parent' handle={".handle"}>
         <MainContainer height={dimensions.height} width={dimensions.width}>
-            <WindowHeader>
-                <HeaderButton>
-                    <Circle />
-                </HeaderButton>
-                <HeaderTitle>
-                    <HeaderText>{name}</HeaderText>
-                </HeaderTitle>
-            </WindowHeader>
+            <ConsoleHeader appInfo={appInfo} />
             <WindowContainer>
                 {children}
             </WindowContainer>
