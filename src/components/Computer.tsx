@@ -64,23 +64,34 @@ const IconText = styled.p`
 const Grid = styled.div<{ rows: number, columns: number }>`
     position: absolute;
     display: grid;
-    width: 99%;
-    height: 99%;
-    grid-template-columns: repeat(${props => props.columns}, ${props => (99 - (props.columns * 2)) / props.columns}%);
-    grid-template-rows: repeat(${props => props.rows}, ${props => (99 - (props.rows * 2)) / props.rows}%);
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(${props => props.columns}, ${props => (100 - (props.columns * 2)) / props.columns}%);
+    grid-template-rows: repeat(${props => props.rows}, ${props => (100 - (props.rows * 2)) / props.rows}%);
     grid-auto-flow: column;
     grid-row-gap: 2%;
     grid-column-gap: 2%;
-    padding-top: 1%;
-    padding-left: 1%;
 `;
 
 const Link = styled.a <{ row?: number, column?: number }> `
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: auto;
     ${props => props.row ? `grid-row: ${props.row};` : ''}
     ${props => props.column ? `grid-column: ${props.column};` : ''}
-    padding: 2%;
     text-align: center;
+
+    :hover {
+        border: 1px dashed #3d3d3d;
+        border-radius: 0.25em;
+        cursor: pointer;
+    }
 `;
 
 const RotatingImage = styled.img`

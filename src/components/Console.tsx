@@ -41,6 +41,10 @@ const HeaderButton = styled.div`
     border-radius: 20%;
     justify-content: center;
     align-items: center;
+    transition: background-color 1s;
+    :hover {
+        background-color: #000000;
+    }
 `;
 
 const HeaderTitle = styled.div`
