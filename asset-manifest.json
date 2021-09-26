@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/pages/static/css/main.f0db0b28.chunk.css",
+    "main.css": "/pages/static/css/main.c2904a55.chunk.css",
     "main.js": "/pages/static/js/main.ff5646b6.chunk.js",
     "main.js.map": "/pages/static/js/main.ff5646b6.chunk.js.map",
     "runtime-main.js": "/pages/static/js/runtime-main.400bc820.js",
@@ -8,7 +8,7 @@
     "static/js/2.56984baa.chunk.js": "/pages/static/js/2.56984baa.chunk.js",
     "static/js/2.56984baa.chunk.js.map": "/pages/static/js/2.56984baa.chunk.js.map",
     "index.html": "/pages/index.html",
-    "static/css/main.f0db0b28.chunk.css.map": "/pages/static/css/main.f0db0b28.chunk.css.map",
+    "static/css/main.c2904a55.chunk.css.map": "/pages/static/css/main.c2904a55.chunk.css.map",
     "static/js/2.56984baa.chunk.js.LICENSE.txt": "/pages/static/js/2.56984baa.chunk.js.LICENSE.txt",
     "static/media/computer-shiny.5aa929f3.svg": "/pages/static/media/computer-shiny.5aa929f3.svg",
     "static/media/computer.d8a6fb63.svg": "/pages/static/media/computer.d8a6fb63.svg",
@@ -17,13 +17,14 @@
     "static/media/duck.e4fa0349.svg": "/pages/static/media/duck.e4fa0349.svg",
     "static/media/folder.9d5e3359.svg": "/pages/static/media/folder.9d5e3359.svg",
     "static/media/github.04be58c1.svg": "/pages/static/media/github.04be58c1.svg",
+    "static/media/index.css": "/pages/static/media/office.bc03e4df.jpg",
     "static/media/plug.ccebd3d4.svg": "/pages/static/media/plug.ccebd3d4.svg",
     "static/media/profile.87bcfedc.jpg": "/pages/static/media/profile.87bcfedc.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.400bc820.js",
     "static/js/2.56984baa.chunk.js",
-    "static/css/main.f0db0b28.chunk.css",
+    "static/css/main.c2904a55.chunk.css",
     "static/js/main.ff5646b6.chunk.js"
   ]
 }
