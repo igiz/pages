@@ -17,6 +17,9 @@ const Toolbar = styled.div<{ height: string }>`
 const Left = styled.div`
     display: flex;
     width: 50%;
+    div {
+        border-left: 1px solid black;
+    }
 `;
 
 const Right = styled.div`

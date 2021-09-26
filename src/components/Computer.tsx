@@ -11,7 +11,7 @@ import github from '../assets/github.svg';
 import console from '../assets/console.svg';
 import { AppContext } from '../contexts/AppContext';
 import { Actions } from '../types/actions';
-import { CvAppMain } from '../types/appconstants';
+import { CvAppMain, Folder } from '../types/appconstants';
 
 const OperatingSystem = styled.div`
     display: flex;
@@ -120,6 +120,11 @@ const SystemLogo: React.FC = () => {
     </Logo>
 }
 
+const AppContainer = styled.div`
+    width: 100%;
+    height: 100%;
+`;
+
 const Computer: React.FC<{ dimensions: { rows: number, columns: number } }> = ({ children, dimensions }) => {
     const { dispatch } = useContext(AppContext);
 
@@ -131,12 +136,14 @@ const Computer: React.FC<{ dimensions: { rows: number, columns: number } }> = ({
                     <SystemLogo />
                     <Grid rows={dimensions.rows} columns={dimensions.columns}>
                         <Icon iconText="Computer" iconImage={computer} />
-                        <Icon iconText="Super Secret" iconImage={folder} />
+                        <Icon iconText="Super Secret" iconImage={folder} action={() => dispatch(Actions.Open(Folder("Super Secret")))} />
                         <Icon iconText="CV App" iconImage={console} action={() => dispatch(Actions.Open(CvAppMain))} />
                         {/** Push to the very end of the grid**/}
                         <Icon iconText="Source Code" iconImage={github} link={'https://github.com/igiz/pages/tree/master'} row={dimensions.rows} column={dimensions.columns} />
                     </Grid>
-                    {children}
+                    <AppContainer>
+                        {children}
+                    </AppContainer>
                 </Wallpaper>
             </Desktop >
         </OperatingSystem>

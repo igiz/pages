@@ -8,11 +8,12 @@ import { ProcessInfo } from "../types/types";
 const WindowContainer = styled.div`
     display: flex;
     flex-direction: row;
-    border-bottom: 0.2rem solid #36ADAD;
-    border-left: 0.2rem solid #36ADAD;
-    border-right: 0.2rem solid #36ADAD;
+    border-bottom: 5px solid #36ADAD;
+    border-left: 5px solid #36ADAD;
+    border-right: 5px solid #36ADAD;
+    min-height: 100px;
     overflow-y: scroll;
-    overflow-x: hidden;
+
     background-color: #292323;
 
     ::-webkit-scrollbar {
@@ -33,7 +34,10 @@ const WindowHeader = styled.div`
     display: flex;
     flex-direction: row-reverse;
     background-color: #36ADAD;
-    padding: 0.2rem;
+    min-height: 20px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
 `;
 
 const MainContainer = styled.div<{ height: number | string, width: number | string, opacity: number, left: string }>`
@@ -74,11 +78,11 @@ const HeaderText = styled.p`
 `;
 
 const Circle = styled.div`
-  width: 1rem;
-  height: 1rem;
+  width: 0.8rem;
+  height: 0.8rem;
   background-color: #FB9632;
   border-radius: 50%;
-  transition: background-color 1s , border-radius 1s, height 1s;
+  transition: background-color 0.2s , border-radius 0.2s, height 0.2s;
   :hover {
         background-color: #ff0000;
         border-radius: 0;
