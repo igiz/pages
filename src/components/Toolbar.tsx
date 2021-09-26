@@ -29,6 +29,7 @@ const Right = styled.div`
 `;
 
 const AppBar = styled.div`
+    user-select: none;
     width: 14em;
     box-shadow: 0px 2px 5px 0px #aaa8a8 inset;
     display: flex;

@@ -86,6 +86,7 @@ const Link = styled.a <{ row?: number, column?: number }> `
     ${props => props.row ? `grid-row: ${props.row};` : ''}
     ${props => props.column ? `grid-column: ${props.column};` : ''}
     text-align: center;
+    user-select: none;
 
     :hover {
         border: 1px dashed #3d3d3d;
