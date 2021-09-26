@@ -1,9 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from 'react-router-dom';
 
 import { NavLink } from '../types/types';
 import linkConfig from '../links.json';
 import profile from '../assets/profile.jpg';
+
+
 
 const ColoredSpan = styled.span<{ color: string }>`
     color: ${props => props.color};
@@ -64,6 +72,8 @@ const SmallImage = styled.img`
 `;
 
 const NavigationContainer = styled.div`
+    position: sticky;
+    top: 0;
     flex: 1;
     flex-direction: column;
     font-size: 12pt;
@@ -100,39 +110,90 @@ const ConsoleText: React.FC<{ message: string }> = ({ message }) => {
 
 const CvApp: React.FC = () => {
     const navigationLinks: NavLink[] = linkConfig.links;
-    return <FlexContainer direction={"column"}>
-        <ConsoleText message={'Hello there stranger.......... My name is Ziggy'} />
-        <FlexContainer direction={"row"}>
-            <NavigationContainer>
-                <ColoredSpan color="white">What would you like to know?</ColoredSpan>
-                <table id="nav">
-                    {navigationLinks.map(item => <tr>
-                        <td>
-                            <a href={item.link}>{item.text}</a>
-                        </td>
-                    </tr>)}
-                </table>
-            </NavigationContainer>
-            <ContentsContainer>
-                <FlexContainer direction={"row"}>
-                    <SmallImage src={profile} />
-                    <FlexContainer direction={"column"}>
-                        <ColoredSpan color={"white"}>About Me</ColoredSpan>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Maecenas sit amet est vitae tortor faucibus vehicula suscipit at neque.
-                            Nulla eget efficitur leo. Pellentesque ut neque in tortor tincidunt hendrerit ut ut ante.
-                            Suspendisse sodales lectus in sodales semper. Maecenas elit orci, condimentum vitae tellus ut, malesuada feugiat arcu. Nunc euismod tempor vehicula. Duis sem felis,
-                            accumsan non elementum vitae, ornare non dolor. Proin sit amet mauris metus. Quisque sit amet accumsan diam. Aliquam rutrum justo vel risus ultrices, v
-                            el malesuada magna pretium. Etiam eget dictum ante. Aliquam lacinia, enim in luctus congue, tellus leo laoreet lacus, in volutpat justo orci ut lorem.
-                            Proin pellentesque dignissim diam, a accumsan sem suscipit volutpat.
-                        </p>
-                        <p>(This section will be filled soon , I promise)</p>
-                        <p>♪┏(・o･)┛♪┗ ( ･o･) ┓♪</p>
+    return <Router>
+        <FlexContainer direction={"column"}>
+            <ConsoleText message={'Hello there stranger.......... My name is Ziggy'} />
+            <FlexContainer direction={"row"}>
+                <NavigationContainer>
+                    <ColoredSpan color="white">What would you like to know?</ColoredSpan>
+                    <table id="nav">
+                        {navigationLinks.map(item => <tr>
+                            <td>
+                                <Link to={item.link}>{item.text}</Link>
+                            </td>
+                        </tr>)}
+                    </table>
+                </NavigationContainer>
+                <ContentsContainer>
+                    <FlexContainer direction={"row"}>
+
+                        <Switch>
+                            <Route path="/about">
+                                <About />
+                            </Route>
+                            <Route path="/education">
+                                <Education />
+                            </Route>
+                        </Switch>
+
                     </FlexContainer>
-                </FlexContainer>
-            </ContentsContainer>
+                </ContentsContainer>
+            </FlexContainer>
         </FlexContainer>
+    </Router >
+}
+
+
+const Education: React.FC = () => {
+    return <FlexContainer direction={"column"}>
+        <p> el malesuada magna pretium. Etiam eget dictum ante. Aliquam lacinia, enim in luctus congue, tellus leo laoreet lacus, in volutpat justo orci ut lorem.
+            Proin pellentesque dignissim diam, a accumsan sem suscipit volutpat.                            Maecenas sit amet est vitae tortor faucibus vehicula suscipit at neque.
+            Nulla eget efficitur leo. Pellentesque ut neque in tortor tincidunt hendrerit ut ut ante.
+            Suspendisse sodales lectus in sodales semper. Maecenas elit orci, condimentum vitae tellus ut, malesuada feugiat arcu. Nunc euismod tempor vehicula. Duis sem felis,
+            accumsan non elementum vitae, ornare non dolor. Proin sit amet mauris metus. Quisque sit amet accumsan diam. Aliquam rutrum justo vel risus ultrices, v
+            el malesuada magna pretium. Etiam eget dictum ante. Aliquam lacinia, enim in luctus congue, tellus leo laoreet lacus, in volutpat justo orci ut lorem.
+            Proin pellentesque dignissim diam, a accumsan sem suscipit volutpat.                            Maecenas sit amet est vitae tortor faucibus vehicula suscipit at neque.
+            Nulla eget efficitur leo. Pellentesque ut neque in tortor tincidunt hendrerit ut ut ante.
+            Suspendisse sodales lectus in sodales semper. Maecenas elit orci, condimentum vitae tellus ut, malesuada feugiat arcu. Nunc euismod tempor vehicula. Duis sem felis,
+            accumsan non elementum vitae, ornare non dolor. Proin sit amet mauris metus. Quisque sit amet accumsan diam. Aliquam rutrum justo vel risus ultrices, v
+            el malesuada magna pretium. Etiam eget dictum ante. Aliquam lacinia, enim in luctus congue, tellus leo laoreet lacus, in volutpat justo orci ut lorem.
+            Proin pellentesque dignissim diam, a accumsan sem suscipit volutpat.
+        </p>
     </FlexContainer>
+}
+
+const About: React.FC = () => {
+    return <>
+        <SmallImage src={profile} />
+        <FlexContainer direction={"column"}>
+            <ColoredSpan color={"white"}>About Me</ColoredSpan>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Maecenas sit amet est vitae tortor faucibus vehicula suscipit at neque.
+                Nulla eget efficitur leo. Pellentesque ut neque in tortor tincidunt hendrerit ut ut ante.
+                Suspendisse sodales lectus in sodales semper. Maecenas elit orci, condimentum vitae tellus ut, malesuada feugiat arcu. Nunc euismod tempor vehicula. Duis sem felis,
+                accumsan non elementum vitae, ornare non dolor. Proin sit amet mauris metus. Quisque sit amet accumsan diam. Aliquam rutrum justo vel risus ultrices, v
+                el malesuada magna pretium. Etiam eget dictum ante. Aliquam lacinia, enim in luctus congue, tellus leo laoreet lacus, in volutpat justo orci ut lorem.
+                Proin pellentesque dignissim diam, a accumsan sem suscipit volutpat.                            Maecenas sit amet est vitae tortor faucibus vehicula suscipit at neque.
+                Nulla eget efficitur leo. Pellentesque ut neque in tortor tincidunt hendrerit ut ut ante.
+                Suspendisse sodales lectus in sodales semper. Maecenas elit orci, condimentum vitae tellus ut, malesuada feugiat arcu. Nunc euismod tempor vehicula. Duis sem felis,
+                accumsan non elementum vitae, ornare non dolor. Proin sit amet mauris metus. Quisque sit amet accumsan diam. Aliquam rutrum justo vel risus ultrices, v
+                el malesuada magna pretium. Etiam eget dictum ante. Aliquam lacinia, enim in luctus congue, tellus leo laoreet lacus, in volutpat justo orci ut lorem.
+                Proin pellentesque dignissim diam, a accumsan sem suscipit volutpat.                            Maecenas sit amet est vitae tortor faucibus vehicula suscipit at neque.
+                Nulla eget efficitur leo. Pellentesque ut neque in tortor tincidunt hendrerit ut ut ante.
+                Suspendisse sodales lectus in sodales semper. Maecenas elit orci, condimentum vitae tellus ut, malesuada feugiat arcu. Nunc euismod tempor vehicula. Duis sem felis,
+                accumsan non elementum vitae, ornare non dolor. Proin sit amet mauris metus. Quisque sit amet accumsan diam. Aliquam rutrum justo vel risus ultrices, v
+                el malesuada magna pretium. Etiam eget dictum ante. Aliquam lacinia, enim in luctus congue, tellus leo laoreet lacus, in volutpat justo orci ut lorem.
+                Proin pellentesque dignissim diam, a accumsan sem suscipit volutpat.                            Maecenas sit amet est vitae tortor faucibus vehicula suscipit at neque.
+                Nulla eget efficitur leo. Pellentesque ut neque in tortor tincidunt hendrerit ut ut ante.
+                Suspendisse sodales lectus in sodales semper. Maecenas elit orci, condimentum vitae tellus ut, malesuada feugiat arcu. Nunc euismod tempor vehicula. Duis sem felis,
+                accumsan non elementum vitae, ornare non dolor. Proin sit amet mauris metus. Quisque sit amet accumsan diam. Aliquam rutrum justo vel risus ultrices, v
+                el malesuada magna pretium. Etiam eget dictum ante. Aliquam lacinia, enim in luctus congue, tellus leo laoreet lacus, in volutpat justo orci ut lorem.
+                Proin pellentesque dignissim diam, a accumsan sem suscipit volutpat.
+            </p>
+            <p>(This section will be filled soon , I promise)</p>
+            <p>♪┏(・o･)┛♪┗ ( ･o･) ┓♪</p>
+        </FlexContainer>
+    </>
 }
 
 export default CvApp;

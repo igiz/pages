@@ -1,27 +1,27 @@
 {
     "links": [
         {
-            "link": "",
+            "link": "/about",
             "text": "About Me 😜"
         },
         {
-            "link": "",
+            "link": "/education",
             "text": "Education 🏫"
         },
         {
-            "link": "",
+            "link": "/experience",
             "text": "Past Experience ✏"
         },
         {
-            "link": "",
+            "link": "/tech",
             "text": "Technology Stack 👨‍💻"
         },
         {
-            "link": "",
+            "link": "/links",
             "text": "Links 📎"
         },
         {
-            "link": "",
+            "link": "/contact",
             "text": "Contact Me 📞"
         }
     ]

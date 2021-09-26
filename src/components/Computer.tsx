@@ -96,6 +96,7 @@ const Link = styled.a <{ row?: number, column?: number }> `
 `;
 
 const RotatingImage = styled.img`
+    filter: drop-shadow(5px 2.5px 1px);
     animation: flip 10s steps(360) infinite;
     @keyframes flip {
         from {

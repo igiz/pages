@@ -13,13 +13,14 @@ export interface IAppContainerProps {
 
 const WindowContainer = styled.div`
     display: flex;
+    max-height: 95%;
+    min-height: 95%;
     flex-direction: row;
     border-bottom: 5px solid #36ADAD;
     border-left: 5px solid #36ADAD;
     border-right: 5px solid #36ADAD;
-    min-height: 100px;
+    overflow-wrap: break-word;
     overflow-y: scroll;
-
     background-color: #292323;
 
     ::-webkit-scrollbar {
@@ -38,9 +39,9 @@ const WindowContainer = styled.div`
 
 const WindowHeader = styled.div`
     display: flex;
+    height: auto;
     flex-direction: row-reverse;
     background-color: #36ADAD;
-    min-height: 20px;
     padding-right: 5px;
     padding-top: 3px;
     padding-bottom: 3px;
