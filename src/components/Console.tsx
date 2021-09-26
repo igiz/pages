@@ -1,9 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { forwardRef, useContext, useEffect, useState } from "react";
 import Draggable from "react-draggable";
 import styled from "styled-components";
 import { AppContext } from "../contexts/AppContext";
 import { Actions } from "../types/actions";
 import { ProcessInfo } from "../types/types";
+
+export interface IAppContainerProps {
+    appInfo: ProcessInfo,
+    dimensions: { height: number | string, width: number | string },
+    onHeader: () => void;
+}
 
 const WindowContainer = styled.div`
     display: flex;
@@ -43,11 +49,11 @@ const WindowHeader = styled.div`
 const MainContainer = styled.div<{ height: number | string, width: number | string, opacity: number, left: string }>`
     width: ${props => props.width};
     height: ${props => props.height};
-    position: relative;
+    position: absolute;
     left: ${props => props.left};
-    top: 10%;
     transition: opacity 0.5s, left 1s;
     opacity: ${props => props.opacity};
+    top: 10%;
 `;
 
 const HeaderButton = styled.div`
@@ -91,19 +97,19 @@ const Circle = styled.div`
   }
 `;
 
-const ConsoleHeader: React.FC<{ appInfo: ProcessInfo }> = ({ appInfo }) => {
+const ConsoleHeader: React.FC<{ appInfo: ProcessInfo, onHeader: () => void }> = ({ appInfo, onHeader }) => {
     var { dispatch } = useContext(AppContext);
     return <WindowHeader className={"handle"}>
         <HeaderButton onMouseDown={() => dispatch(Actions.Close(appInfo))}>
             <Circle />
         </HeaderButton>
-        <HeaderTitle>
+        <HeaderTitle onMouseDown={onHeader}>
             <HeaderText>{appInfo.name}</HeaderText>
         </HeaderTitle>
     </WindowHeader>
 }
 
-const Console: React.FC<{ appInfo: ProcessInfo, dimensions: { height: number | string, width: number | string } }> = ({ appInfo, children, dimensions }) => {
+const Console = forwardRef<HTMLDivElement, React.PropsWithChildren<IAppContainerProps>>(({ appInfo, dimensions, onHeader, children }, ref) => {
 
     const [opacity, setOpacity] = useState<number>(0);
     const [left, setLeft] = useState<string>("0%");
@@ -115,13 +121,13 @@ const Console: React.FC<{ appInfo: ProcessInfo, dimensions: { height: number | s
     }, [])
 
     return <Draggable bounds='parent' handle={".handle"}>
-        <MainContainer height={dimensions.height} width={dimensions.width} opacity={opacity} left={left}>
-            <ConsoleHeader appInfo={appInfo} />
+        <MainContainer height={dimensions.height} width={dimensions.width} opacity={opacity} left={left} ref={ref}>
+            <ConsoleHeader appInfo={appInfo} onHeader={onHeader} />
             <WindowContainer>
                 {children}
             </WindowContainer>
         </MainContainer>
-    </Draggable>
-}
+    </Draggable >
+});
 
 export default Console;

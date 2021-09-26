@@ -124,6 +124,7 @@ const SystemLogo: React.FC = () => {
 const AppContainer = styled.div`
     width: 100%;
     height: 100%;
+    display: list-item;
 `;
 
 const Computer: React.FC<{ dimensions: { rows: number, columns: number } }> = ({ children, dimensions }) => {

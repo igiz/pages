@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, useState } from "react";
 import { Action, AppActions } from "../types/actions";
 import { Dictionary, IAppContext, IAppState } from "../types/interfaces";
 import { ProcessInfo } from "../types/types";
@@ -27,11 +27,14 @@ const useAppReducer = () => {
 
 export const AppContextProvider: React.FC = ({ children }) => {
     const [state, dispatch] = useAppReducer();
+    const [focused, setFocused] = useState<string>();
 
     return <AppContext.Provider value={{
         isOpen: (appId: string) => state.running[appId] !== undefined,
         state,
+        focused,
         dispatch,
+        setFocused
     }}>
         {children}
     </AppContext.Provider>

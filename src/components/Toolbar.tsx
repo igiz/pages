@@ -28,10 +28,12 @@ const Right = styled.div`
     width: 50%;
 `;
 
-const AppBar = styled.div`
+const AppBar = styled.div<{ selected: boolean }>`
+    cursor: pointer;
     user-select: none;
     width: 14em;
     box-shadow: 0px 2px 5px 0px #aaa8a8 inset;
+    ${props => props.selected ? "background: #9693933a" : ""};
     display: flex;
     align-items: center;
     padding: 0 0.5em 0 0.5em;
@@ -50,14 +52,14 @@ const SmallImage = styled.img`
 `;
 
 const DesktopToolbar: React.FC<{ height: string }> = ({ height }) => {
-    const { state } = useContext(AppContext);
+    const { state, focused, setFocused } = useContext(AppContext);
 
     return <Toolbar height={height}>
         <Left>
             <SmallImage src={computer} />
             {
                 Object.values(state.running).map(item =>
-                    <AppBar>
+                    <AppBar onMouseDown={() => setFocused(item.appId)} selected={item.appId === focused}>
                         <SmallImage src={item.appLogo} />
                         <p>{item.name}</p>
                     </AppBar>
