@@ -36,12 +36,12 @@ export const AppLauncher: React.FC = () => {
             const ref = React.createRef<HTMLDivElement>();
             if (info.appId === CvAppMain.appId) {
                 running[info.appId] =
-                    <Console appInfo={info} dimensions={{ height: '450px', width: '950px' }} onHeader={() => setFocused(info.appId)} ref={ref}>
+                    <Console appInfo={info} dimensions={{ height: '450px', width: '950px' }} onFocus={() => setFocused(info.appId)} ref={ref}>
                         <CvApp />
                     </Console>
             } else if (info.appId.startsWith("Folder:")) {
                 running[info.appId] =
-                    <Console appInfo={info} dimensions={{ height: '135px', width: '500px' }} onHeader={() => setFocused(info.appId)} ref={ref}>
+                    <Console appInfo={info} dimensions={{ height: '135px', width: '500px' }} onFocus={() => setFocused(info.appId)} ref={ref}>
                         <Folder />
                     </Console>
             }

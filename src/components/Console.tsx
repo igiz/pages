@@ -8,7 +8,7 @@ import { ProcessInfo } from "../types/types";
 export interface IAppContainerProps {
     appInfo: ProcessInfo,
     dimensions: { height: number | string, width: number | string },
-    onHeader: () => void;
+    onFocus: () => void;
 }
 
 const WindowContainer = styled.div`
@@ -97,22 +97,23 @@ const Circle = styled.div`
   }
 `;
 
-const ConsoleHeader: React.FC<{ appInfo: ProcessInfo, onHeader: () => void }> = ({ appInfo, onHeader }) => {
+const ConsoleHeader: React.FC<{ appInfo: ProcessInfo, onFocus: () => void }> = ({ appInfo, onFocus }) => {
     var { dispatch } = useContext(AppContext);
     return <WindowHeader className={"handle"}>
         <HeaderButton onMouseDown={() => dispatch(Actions.Close(appInfo))}>
             <Circle />
         </HeaderButton>
-        <HeaderTitle onMouseDown={onHeader}>
-            <HeaderText>{appInfo.name}</HeaderText>
+        <HeaderTitle>
+            <HeaderText onMouseDown={onFocus}>{appInfo.name}</HeaderText>
         </HeaderTitle>
     </WindowHeader>
 }
 
-const Console = forwardRef<HTMLDivElement, React.PropsWithChildren<IAppContainerProps>>(({ appInfo, dimensions, onHeader, children }, ref) => {
+const Console = forwardRef<HTMLDivElement, React.PropsWithChildren<IAppContainerProps>>(({ appInfo, dimensions, onFocus, children }, ref) => {
 
     const [opacity, setOpacity] = useState<number>(0);
     const [left, setLeft] = useState<string>("0%");
+
     useEffect(() => {
         setTimeout(() => {
             setOpacity(1);
@@ -122,8 +123,8 @@ const Console = forwardRef<HTMLDivElement, React.PropsWithChildren<IAppContainer
 
     return <Draggable bounds='parent' handle={".handle"}>
         <MainContainer height={dimensions.height} width={dimensions.width} opacity={opacity} left={left} ref={ref}>
-            <ConsoleHeader appInfo={appInfo} onHeader={onHeader} />
-            <WindowContainer>
+            <ConsoleHeader appInfo={appInfo} onFocus={onFocus} />
+            <WindowContainer onMouseDown={onFocus}>
                 {children}
             </WindowContainer>
         </MainContainer>
