@@ -7,7 +7,8 @@ export type Action<T> = {
 
 export enum AppActions {
     Open = 'OpenApp',
-    Close = 'CloseApp'
+    Close = 'CloseApp',
+    Focus = 'Focus'
 }
 
 export const Actions = {
@@ -17,6 +18,10 @@ export const Actions = {
     }),
     Open: (processInfo: ProcessInfo): Action<ProcessInfo> => ({
         type: AppActions.Open,
+        payload: processInfo
+    }),
+    Focus: (processInfo: ProcessInfo): Action<ProcessInfo> => ({
+        type: AppActions.Focus,
         payload: processInfo
     })
 }

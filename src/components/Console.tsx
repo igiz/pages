@@ -11,14 +11,14 @@ export interface IAppContainerProps {
     onFocus: () => void;
 }
 
-const WindowContainer = styled.div`
+const WindowContainer = styled.div<{ borderColor: string }>`
     display: flex;
     max-height: 95%;
     min-height: 95%;
     flex-direction: row;
-    border-bottom: 5px solid #36ADAD;
-    border-left: 5px solid #36ADAD;
-    border-right: 5px solid #36ADAD;
+    border-bottom: 5px solid ${props => props.borderColor};
+    border-left: 5px solid ${props => props.borderColor};
+    border-right: 5px solid ${props => props.borderColor};
     overflow-wrap: break-word;
     overflow-y: scroll;
     background-color: #292323;
@@ -37,11 +37,11 @@ const WindowContainer = styled.div`
     }
 `;
 
-const WindowHeader = styled.div`
+const WindowHeader = styled.div<{ borderColor: string }>`
     display: flex;
     height: auto;
     flex-direction: row-reverse;
-    background-color: #36ADAD;
+    background-color: ${props => props.borderColor};
     padding-right: 5px;
     padding-top: 3px;
     padding-bottom: 3px;
@@ -98,10 +98,14 @@ const Circle = styled.div`
   }
 `;
 
-const ConsoleHeader: React.FC<{ appInfo: ProcessInfo, onFocus: () => void }> = ({ appInfo, onFocus }) => {
+const ConsoleHeader: React.FC<{ appInfo: ProcessInfo, borderColor: string, onFocus: () => void }> = ({ appInfo, borderColor, onFocus }) => {
     var { dispatch } = useContext(AppContext);
-    return <WindowHeader className={"handle"}>
-        <HeaderButton onMouseDown={() => dispatch(Actions.Close(appInfo))}>
+
+    return <WindowHeader className={"handle"} borderColor={borderColor}>
+        <HeaderButton onMouseDown={(event) => {
+            dispatch(Actions.Close(appInfo));
+            event.preventDefault();
+        }}>
             <Circle />
         </HeaderButton>
         <HeaderTitle>
@@ -111,9 +115,10 @@ const ConsoleHeader: React.FC<{ appInfo: ProcessInfo, onFocus: () => void }> = (
 }
 
 const Console = forwardRef<HTMLDivElement, React.PropsWithChildren<IAppContainerProps>>(({ appInfo, dimensions, onFocus, children }, ref) => {
-
+    const { state } = useContext(AppContext);
     const [opacity, setOpacity] = useState<number>(0);
     const [left, setLeft] = useState<string>("0%");
+    const borderColor = state.focused === appInfo.appId ? "#36ADAD" : "#235f5f";
 
     useEffect(() => {
         setTimeout(() => {
@@ -124,8 +129,8 @@ const Console = forwardRef<HTMLDivElement, React.PropsWithChildren<IAppContainer
 
     return <Draggable bounds='parent' handle={".handle"}>
         <MainContainer height={dimensions.height} width={dimensions.width} opacity={opacity} left={left} ref={ref}>
-            <ConsoleHeader appInfo={appInfo} onFocus={onFocus} />
-            <WindowContainer onMouseDown={onFocus}>
+            <ConsoleHeader appInfo={appInfo} onFocus={onFocus} borderColor={borderColor} />
+            <WindowContainer onMouseDown={onFocus} borderColor={borderColor}>
                 {children}
             </WindowContainer>
         </MainContainer>

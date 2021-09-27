@@ -8,12 +8,11 @@ export interface Dictionary<T> {
 
 export interface IAppState {
     running: Dictionary<ProcessInfo>
+    focused: string | undefined;
 }
 
 export interface IAppContext {
     isOpen: (appId: string) => boolean;
     state: IAppState;
-    focused: string | undefined;
     dispatch: Dispatch<Action<any>>
-    setFocused: (appId: string) => void;
 }

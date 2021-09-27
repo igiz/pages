@@ -1,14 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../contexts/AppContext";
+import { Actions } from "../types/actions";
 import { CvAppMain } from "../types/appconstants";
+import { Dictionary } from "../types/interfaces";
 import Console from "./Console";
 import CvApp from "./CvApp";
 import Folder from "./Folder";
 
 export const AppLauncher: React.FC = () => {
-    const { state, focused, setFocused } = useContext(AppContext);
-    const [apps, setApps] = useState<Record<string, JSX.Element>>({})
-    const [appRefs, setAppRefs] = useState<Record<string, React.RefObject<HTMLDivElement>>>({});
+    const { state, dispatch } = useContext(AppContext);
+    const [apps, setApps] = useState<Dictionary<JSX.Element>>({})
+    const [appRefs, setAppRefs] = useState<Dictionary<React.RefObject<HTMLDivElement>>>({});
+    const focused = state.focused;
 
     useEffect(() => {
         if (focused !== undefined && appRefs[focused]) {
@@ -36,12 +39,12 @@ export const AppLauncher: React.FC = () => {
             const ref = React.createRef<HTMLDivElement>();
             if (info.appId === CvAppMain.appId) {
                 running[info.appId] =
-                    <Console appInfo={info} dimensions={{ height: '450px', width: '950px' }} onFocus={() => setFocused(info.appId)} ref={ref}>
+                    <Console appInfo={info} dimensions={{ height: '450px', width: '950px' }} onFocus={() => dispatch(Actions.Focus(info))} ref={ref}>
                         <CvApp />
                     </Console>
             } else if (info.appId.startsWith("Folder:")) {
                 running[info.appId] =
-                    <Console appInfo={info} dimensions={{ height: '135px', width: '500px' }} onFocus={() => setFocused(info.appId)} ref={ref}>
+                    <Console appInfo={info} dimensions={{ height: '135px', width: '500px' }} onFocus={() => dispatch(Actions.Focus(info))} ref={ref}>
                         <Folder />
                     </Console>
             }
@@ -49,7 +52,7 @@ export const AppLauncher: React.FC = () => {
         }
         setAppRefs(refs);
         setApps(running)
-    }, [state, setFocused])
+    }, [state, dispatch])
 
     return <>
         {Object.keys(apps).map(item => apps[item])}

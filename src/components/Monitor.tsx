@@ -15,6 +15,7 @@ const Pillar = styled.div<{ color: string, frameOutline: string }>`
     height: 80px;
     width: 150px;
     background-color: ${props => props.color};
+    box-shadow: 4px 5px 3px #000000;
 `;
 
 const Surface = styled.div<{ frameOutline: string }>`
@@ -22,6 +23,7 @@ const Surface = styled.div<{ frameOutline: string }>`
     width: 800px;
     background-color: ${props => props.color};
     border-radius: 5px;
+    box-shadow: 4px 5px 3px #000000;
 `;
 
 const Screen = styled.div<{ borderColor: string }>`

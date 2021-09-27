@@ -4,6 +4,7 @@ import Clock from './Clock';
 import plug from '../assets/plug.svg'
 import computer from '../assets/computer.svg';
 import { AppContext } from '../contexts/AppContext';
+import { Actions } from '../types/actions';
 
 const Toolbar = styled.div<{ height: string }>`
     display: flex;
@@ -52,14 +53,15 @@ const SmallImage = styled.img`
 `;
 
 const DesktopToolbar: React.FC<{ height: string }> = ({ height }) => {
-    const { state, focused, setFocused } = useContext(AppContext);
+    const { state, dispatch } = useContext(AppContext);
+    const focused = state.focused;
 
     return <Toolbar height={height}>
         <Left>
             <SmallImage src={computer} />
             {
                 Object.values(state.running).map(item =>
-                    <AppBar onMouseDown={() => setFocused(item.appId)} selected={item.appId === focused}>
+                    <AppBar onMouseDown={() => dispatch(Actions.Focus(item))} selected={item.appId === focused}>
                         <SmallImage src={item.appLogo} />
                         <p>{item.name}</p>
                     </AppBar>
