@@ -9,13 +9,10 @@ import {
 
 import { NavLink } from '../types/types';
 import linkConfig from '../links.json';
-import profile from '../assets/profile.jpg';
-
-
-
-const ColoredSpan = styled.span<{ color: string }>`
-    color: ${props => props.color};
-`;
+import { ColoredSpan, FlexContainer } from './Common';
+import About from './views/About';
+import Education from './views/Education';
+import ComingSoon from './views/Experience';
 
 const ConsoleLine = styled.p`
     * {
@@ -46,11 +43,7 @@ const ScrollSpan = styled.span<{ color: string, charCount: number }>`
     }
 `;
 
-const FlexContainer = styled.div<{ direction: "row" | "column" }>`
-    display: flex;
-    flex-direction: ${props => props.direction};
-    flex-basis: 100%;
-`;
+
 
 const ContentsContainer = styled.div`
     flex: 3;
@@ -61,14 +54,6 @@ const ContentsContainer = styled.div`
     p {
         color: #A83A33
     }
-`;
-
-const SmallImage = styled.img`
-    width: 120px;
-    height: 100px;
-    border: 0.1rem solid white;
-    border-radius: 5px;
-    margin: 1rem;
 `;
 
 const NavigationContainer = styled.div`
@@ -134,6 +119,9 @@ const CvApp: React.FC = () => {
                             <Route path="/education">
                                 <Education />
                             </Route>
+                            <Route path={["/experience", "/tech", "/links", "/contact"]}>
+                                <ComingSoon />
+                            </Route>
                         </Switch>
 
                     </FlexContainer>
@@ -141,59 +129,6 @@ const CvApp: React.FC = () => {
             </FlexContainer>
         </FlexContainer>
     </Router >
-}
-
-
-const Education: React.FC = () => {
-    return <FlexContainer direction={"column"}>
-        <p> el malesuada magna pretium. Etiam eget dictum ante. Aliquam lacinia, enim in luctus congue, tellus leo laoreet lacus, in volutpat justo orci ut lorem.
-            Proin pellentesque dignissim diam, a accumsan sem suscipit volutpat.                            Maecenas sit amet est vitae tortor faucibus vehicula suscipit at neque.
-            Nulla eget efficitur leo. Pellentesque ut neque in tortor tincidunt hendrerit ut ut ante.
-            Suspendisse sodales lectus in sodales semper. Maecenas elit orci, condimentum vitae tellus ut, malesuada feugiat arcu. Nunc euismod tempor vehicula. Duis sem felis,
-            accumsan non elementum vitae, ornare non dolor. Proin sit amet mauris metus. Quisque sit amet accumsan diam. Aliquam rutrum justo vel risus ultrices, v
-            el malesuada magna pretium. Etiam eget dictum ante. Aliquam lacinia, enim in luctus congue, tellus leo laoreet lacus, in volutpat justo orci ut lorem.
-            Proin pellentesque dignissim diam, a accumsan sem suscipit volutpat.                            Maecenas sit amet est vitae tortor faucibus vehicula suscipit at neque.
-            Nulla eget efficitur leo. Pellentesque ut neque in tortor tincidunt hendrerit ut ut ante.
-            Suspendisse sodales lectus in sodales semper. Maecenas elit orci, condimentum vitae tellus ut, malesuada feugiat arcu. Nunc euismod tempor vehicula. Duis sem felis,
-            accumsan non elementum vitae, ornare non dolor. Proin sit amet mauris metus. Quisque sit amet accumsan diam. Aliquam rutrum justo vel risus ultrices, v
-            el malesuada magna pretium. Etiam eget dictum ante. Aliquam lacinia, enim in luctus congue, tellus leo laoreet lacus, in volutpat justo orci ut lorem.
-            Proin pellentesque dignissim diam, a accumsan sem suscipit volutpat.
-        </p>
-    </FlexContainer>
-}
-
-const About: React.FC = () => {
-    return <>
-        <SmallImage src={profile} />
-        <FlexContainer direction={"column"}>
-            <ColoredSpan color={"white"}>About Me</ColoredSpan>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Maecenas sit amet est vitae tortor faucibus vehicula suscipit at neque.
-                Nulla eget efficitur leo. Pellentesque ut neque in tortor tincidunt hendrerit ut ut ante.
-                Suspendisse sodales lectus in sodales semper. Maecenas elit orci, condimentum vitae tellus ut, malesuada feugiat arcu. Nunc euismod tempor vehicula. Duis sem felis,
-                accumsan non elementum vitae, ornare non dolor. Proin sit amet mauris metus. Quisque sit amet accumsan diam. Aliquam rutrum justo vel risus ultrices, v
-                el malesuada magna pretium. Etiam eget dictum ante. Aliquam lacinia, enim in luctus congue, tellus leo laoreet lacus, in volutpat justo orci ut lorem.
-                Proin pellentesque dignissim diam, a accumsan sem suscipit volutpat.                            Maecenas sit amet est vitae tortor faucibus vehicula suscipit at neque.
-                Nulla eget efficitur leo. Pellentesque ut neque in tortor tincidunt hendrerit ut ut ante.
-                Suspendisse sodales lectus in sodales semper. Maecenas elit orci, condimentum vitae tellus ut, malesuada feugiat arcu. Nunc euismod tempor vehicula. Duis sem felis,
-                accumsan non elementum vitae, ornare non dolor. Proin sit amet mauris metus. Quisque sit amet accumsan diam. Aliquam rutrum justo vel risus ultrices, v
-                el malesuada magna pretium. Etiam eget dictum ante. Aliquam lacinia, enim in luctus congue, tellus leo laoreet lacus, in volutpat justo orci ut lorem.
-                Proin pellentesque dignissim diam, a accumsan sem suscipit volutpat.                            Maecenas sit amet est vitae tortor faucibus vehicula suscipit at neque.
-                Nulla eget efficitur leo. Pellentesque ut neque in tortor tincidunt hendrerit ut ut ante.
-                Suspendisse sodales lectus in sodales semper. Maecenas elit orci, condimentum vitae tellus ut, malesuada feugiat arcu. Nunc euismod tempor vehicula. Duis sem felis,
-                accumsan non elementum vitae, ornare non dolor. Proin sit amet mauris metus. Quisque sit amet accumsan diam. Aliquam rutrum justo vel risus ultrices, v
-                el malesuada magna pretium. Etiam eget dictum ante. Aliquam lacinia, enim in luctus congue, tellus leo laoreet lacus, in volutpat justo orci ut lorem.
-                Proin pellentesque dignissim diam, a accumsan sem suscipit volutpat.                            Maecenas sit amet est vitae tortor faucibus vehicula suscipit at neque.
-                Nulla eget efficitur leo. Pellentesque ut neque in tortor tincidunt hendrerit ut ut ante.
-                Suspendisse sodales lectus in sodales semper. Maecenas elit orci, condimentum vitae tellus ut, malesuada feugiat arcu. Nunc euismod tempor vehicula. Duis sem felis,
-                accumsan non elementum vitae, ornare non dolor. Proin sit amet mauris metus. Quisque sit amet accumsan diam. Aliquam rutrum justo vel risus ultrices, v
-                el malesuada magna pretium. Etiam eget dictum ante. Aliquam lacinia, enim in luctus congue, tellus leo laoreet lacus, in volutpat justo orci ut lorem.
-                Proin pellentesque dignissim diam, a accumsan sem suscipit volutpat.
-            </p>
-            <p>(This section will be filled soon , I promise)</p>
-            <p>♪┏(・o･)┛♪┗ ( ･o･) ┓♪</p>
-        </FlexContainer>
-    </>
 }
 
 export default CvApp;
