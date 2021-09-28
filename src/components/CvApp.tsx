@@ -12,7 +12,7 @@ import linkConfig from '../links.json';
 import { ColoredSpan, FlexContainer } from './Common';
 import About from './views/About';
 import Education from './views/Education';
-import ComingSoon from './views/Experience';
+import ComingSoon from './views/ComingSoon';
 
 const ConsoleLine = styled.p`
     * {
@@ -113,7 +113,7 @@ const CvApp: React.FC = () => {
                     <FlexContainer direction={"row"}>
 
                         <Switch>
-                            <Route path="/about">
+                            <Route path={["/about", "/"]}>
                                 <About />
                             </Route>
                             <Route path="/education">
