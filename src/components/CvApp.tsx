@@ -113,7 +113,7 @@ const CvApp: React.FC = () => {
                     <FlexContainer direction={"row"}>
 
                         <Switch>
-                            <Route path={["/about", "/"]}>
+                            <Route path="/about">
                                 <About />
                             </Route>
                             <Route path="/education">
@@ -121,6 +121,9 @@ const CvApp: React.FC = () => {
                             </Route>
                             <Route path={["/experience", "/tech", "/links", "/contact"]}>
                                 <ComingSoon />
+                            </Route>
+                            <Route path="/">
+                                <About />
                             </Route>
                         </Switch>
 
