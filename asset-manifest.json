@@ -1,30 +1,30 @@
 {
   "files": {
     "main.css": "/pages/static/css/main.c2904a55.chunk.css",
-    "main.js": "/pages/static/js/main.c281f3f2.chunk.js",
-    "main.js.map": "/pages/static/js/main.c281f3f2.chunk.js.map",
+    "main.js": "/pages/static/js/main.9e0e5594.chunk.js",
+    "main.js.map": "/pages/static/js/main.9e0e5594.chunk.js.map",
     "runtime-main.js": "/pages/static/js/runtime-main.400bc820.js",
     "runtime-main.js.map": "/pages/static/js/runtime-main.400bc820.js.map",
-    "static/js/2.a99ebbfa.chunk.js": "/pages/static/js/2.a99ebbfa.chunk.js",
-    "static/js/2.a99ebbfa.chunk.js.map": "/pages/static/js/2.a99ebbfa.chunk.js.map",
+    "static/js/2.9e0c924d.chunk.js": "/pages/static/js/2.9e0c924d.chunk.js",
+    "static/js/2.9e0c924d.chunk.js.map": "/pages/static/js/2.9e0c924d.chunk.js.map",
     "index.html": "/pages/index.html",
     "static/css/main.c2904a55.chunk.css.map": "/pages/static/css/main.c2904a55.chunk.css.map",
-    "static/js/2.a99ebbfa.chunk.js.LICENSE.txt": "/pages/static/js/2.a99ebbfa.chunk.js.LICENSE.txt",
-    "static/media/computer-shiny.5aa929f3.svg": "/pages/static/media/computer-shiny.5aa929f3.svg",
-    "static/media/computer.d8a6fb63.svg": "/pages/static/media/computer.d8a6fb63.svg",
-    "static/media/console.d7e6d62d.svg": "/pages/static/media/console.d7e6d62d.svg",
+    "static/js/2.9e0c924d.chunk.js.LICENSE.txt": "/pages/static/js/2.9e0c924d.chunk.js.LICENSE.txt",
+    "static/media/computer-shiny.b255f580.svg": "/pages/static/media/computer-shiny.b255f580.svg",
+    "static/media/computer.58ca100b.svg": "/pages/static/media/computer.58ca100b.svg",
+    "static/media/console.ca991126.svg": "/pages/static/media/console.ca991126.svg",
     "static/media/cursor.25fe7b37.svg": "/pages/static/media/cursor.25fe7b37.svg",
-    "static/media/duck.e4fa0349.svg": "/pages/static/media/duck.e4fa0349.svg",
-    "static/media/folder.9d5e3359.svg": "/pages/static/media/folder.9d5e3359.svg",
+    "static/media/duck.a36a9f37.svg": "/pages/static/media/duck.a36a9f37.svg",
+    "static/media/folder.0aa3143f.svg": "/pages/static/media/folder.0aa3143f.svg",
     "static/media/github.04be58c1.svg": "/pages/static/media/github.04be58c1.svg",
     "static/media/index.css": "/pages/static/media/office.bc03e4df.jpg",
-    "static/media/plug.ccebd3d4.svg": "/pages/static/media/plug.ccebd3d4.svg",
+    "static/media/plug.ca167f7d.svg": "/pages/static/media/plug.ca167f7d.svg",
     "static/media/profile.87bcfedc.jpg": "/pages/static/media/profile.87bcfedc.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.400bc820.js",
-    "static/js/2.a99ebbfa.chunk.js",
+    "static/js/2.9e0c924d.chunk.js",
     "static/css/main.c2904a55.chunk.css",
-    "static/js/main.c281f3f2.chunk.js"
+    "static/js/main.9e0e5594.chunk.js"
   ]
 }
