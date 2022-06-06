@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import {
     BrowserRouter as Router,
@@ -13,6 +13,7 @@ import { ColoredSpan, FlexContainer } from './Common';
 import About from './views/About';
 import Education from './views/Education';
 import ComingSoon from './views/ComingSoon';
+import { AppContext } from '../contexts/AppContext';
 
 const ConsoleLine = styled.p`
     * {
@@ -94,8 +95,9 @@ const ConsoleText: React.FC<{ message: string }> = ({ message }) => {
 }
 
 const CvApp: React.FC = () => {
+    const { baseUrl } = useContext(AppContext);
     const navigationLinks: NavLink[] = linkConfig.links;
-    return <Router>
+    return <Router basename={baseUrl}>
         <FlexContainer direction={"column"}>
             <ConsoleText message={'Hello there stranger.......... My name is Ziggy'} />
             <FlexContainer direction={"row"}>

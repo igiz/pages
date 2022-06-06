@@ -12,6 +12,7 @@ export interface IAppState {
 }
 
 export interface IAppContext {
+    baseUrl: string;
     isOpen: (appId: string) => boolean;
     state: IAppState;
     dispatch: Dispatch<Action<any>>
