@@ -14,7 +14,7 @@ export const AppLauncher: React.FC = () => {
     const focused = state.focused;
 
     useEffect(() => {
-        if (focused !== undefined && appRefs[focused]) {
+        if (focused && appRefs[focused]) {
             const ref = appRefs[focused];
             if (ref.current) {
                 ref.current.style.zIndex = "1";
