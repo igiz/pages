@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import React, { useContext } from 'react';
 import Clock from './Clock';
-import plug from '../assets/plug.svg'
+import plug from '../assets/plug.svg';
 import computer from '../assets/computer.svg';
 import { AppContext } from '../contexts/AppContext';
 import { Actions } from '../types/actions';
@@ -9,7 +9,7 @@ import { Actions } from '../types/actions';
 const Toolbar = styled.div<{ height: string }>`
     display: flex;
     flex-direction: row;
-    height: ${props => props.height};
+    height: ${(props) => props.height};
     width: 100%;
     background-color: #F5F0F0;
     box-shadow: inset 0 0 3px #111010b0;
@@ -34,7 +34,7 @@ const AppBar = styled.div<{ selected: boolean }>`
     user-select: none;
     width: 14em;
     box-shadow: 0px 2px 5px 0px #aaa8a8 inset;
-    ${props => props.selected ? "background: #9693933a" : ""};
+    ${(props) => props.selected ? 'background: #9693933a' : ''};
     display: flex;
     align-items: center;
     padding: 0 0.5em 0 0.5em;
@@ -60,11 +60,11 @@ const DesktopToolbar: React.FC<{ height: string }> = ({ height }) => {
         <Left>
             <SmallImage src={computer} />
             {
-                Object.values(state.running).map(item =>
-                    <AppBar onMouseDown={() => dispatch(Actions.Focus(item))} selected={item.appId === focused}>
+                Object.values(state.running).map((item) =>
+                    <AppBar key={item.appId} onMouseDown={() => dispatch(Actions.focus(item))} selected={item.appId === focused}>
                         <SmallImage src={item.appLogo} />
                         <p>{item.name}</p>
-                    </AppBar>
+                    </AppBar>,
                 )
             }
         </Left>
@@ -72,7 +72,7 @@ const DesktopToolbar: React.FC<{ height: string }> = ({ height }) => {
             <SmallImage src={plug} />
             <Clock />
         </Right>
-    </Toolbar>
-}
+    </Toolbar>;
+};
 
 export default DesktopToolbar;

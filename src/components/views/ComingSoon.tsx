@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 const ComingSoon: React.FC = () => {
     return <p>
         (COMING SOONG)
-    </p>
-}
+    </p>;
+};
 
 export default ComingSoon;

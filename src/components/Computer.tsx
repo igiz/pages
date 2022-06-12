@@ -5,13 +5,13 @@ import React, { useContext } from 'react';
 import DesktopToolbar from './Toolbar';
 import duck from '../assets/duck.svg';
 import cursor from '../assets/cursor.svg';
-import folder from '../assets/folder.svg';
+import folderIcon from '../assets/folder.svg';
 import computer from '../assets/computer-shiny.svg';
 import github from '../assets/github.svg';
 import console from '../assets/console.svg';
 import { AppContext } from '../contexts/AppContext';
 import { Actions } from '../types/actions';
-import { CvAppMain, Folder } from '../types/appconstants';
+import { cvApp, folder } from '../types/appconstants';
 
 const OperatingSystem = styled.div`
     display: flex;
@@ -32,7 +32,7 @@ const Desktop = styled.div`
 const Wallpaper = styled.div<{ height: string }>`
     display: flex;
     position: relative;
-    height: ${props => props.height};
+    height: ${(props) => props.height};
     width: 100%;
 `;
 
@@ -69,8 +69,8 @@ const Grid = styled.div<{ rows: number, columns: number }>`
     height: 100%;
     justify-content: center;
     align-content: center;
-    grid-template-columns: repeat(${props => props.columns}, ${props => (100 - (props.columns * 2)) / props.columns}%);
-    grid-template-rows: repeat(${props => props.rows}, ${props => (100 - (props.rows * 2)) / props.rows}%);
+    grid-template-columns: repeat(${(props) => props.columns}, ${(props) => (100 - (props.columns * 2)) / props.columns}%);
+    grid-template-rows: repeat(${(props) => props.rows}, ${(props) => (100 - (props.rows * 2)) / props.rows}%);
     grid-auto-flow: column;
     grid-row-gap: 2%;
     grid-column-gap: 2%;
@@ -83,8 +83,8 @@ const Link = styled.a <{ row?: number, column?: number }> `
     align-items: center;
     width: auto;
     height: auto;
-    ${props => props.row ? `grid-row: ${props.row};` : ''}
-    ${props => props.column ? `grid-column: ${props.column};` : ''}
+    ${(props) => props.row ? `grid-row: ${props.row};` : ''}
+    ${(props) => props.column ? `grid-column: ${props.column};` : ''}
     text-align: center;
     user-select: none;
 
@@ -112,15 +112,15 @@ const Icon: React.FC<{ iconText: string, iconImage: string, link?: string, actio
     return <Link href={link} onClick={action} target='_blank' rel='noreferrer' row={row} column={column}>
         <IconImage src={iconImage} />
         <IconText>{iconText}</IconText>
-    </Link>
-}
+    </Link>;
+};
 
 const SystemLogo: React.FC = () => {
     return <Logo>
         <RotatingImage src={duck} title='Quack' alt='Mr Duck' />
         <LogoText>QUACKOS 0.3</LogoText>
-    </Logo>
-}
+    </Logo>;
+};
 
 const AppContainer = styled.div`
     width: 100%;
@@ -139,8 +139,8 @@ const Computer: React.FC<{ dimensions: { rows: number, columns: number } }> = ({
                     <SystemLogo />
                     <Grid rows={dimensions.rows} columns={dimensions.columns}>
                         <Icon iconText="Computer" iconImage={computer} />
-                        <Icon iconText="Super Secret" iconImage={folder} action={() => dispatch(Actions.Open(Folder("Super Secret")))} />
-                        <Icon iconText="CV App" iconImage={console} action={() => dispatch(Actions.Open(CvAppMain))} />
+                        <Icon iconText="Super Secret" iconImage={folderIcon} action={() => dispatch(Actions.open(folder('Super Secret')))} />
+                        <Icon iconText="CV App" iconImage={console} action={() => dispatch(Actions.open(cvApp))} />
                         {/** Push to the very end of the grid**/}
                         <Icon iconText="Source Code" iconImage={github} link={'https://github.com/igiz/pages/tree/master'} row={dimensions.rows} column={dimensions.columns} />
                     </Grid>
@@ -150,7 +150,7 @@ const Computer: React.FC<{ dimensions: { rows: number, columns: number } }> = ({
                 </Wallpaper>
             </Desktop >
         </OperatingSystem>
-    )
-}
+    );
+};
 
 export default Computer;

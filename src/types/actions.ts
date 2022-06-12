@@ -1,4 +1,5 @@
-import { ProcessInfo } from "./types"
+/* eslint-disable no-unused-vars */
+import { ProcessInfo } from './types';
 
 export type Action<T> = {
     type: string;
@@ -12,16 +13,16 @@ export enum AppActions {
 }
 
 export const Actions = {
-    Close: (processInfo: ProcessInfo): Action<ProcessInfo> => ({
+    close: (processInfo: ProcessInfo): Action<ProcessInfo> => ({
         type: AppActions.Close,
-        payload: processInfo
+        payload: processInfo,
     }),
-    Open: (processInfo: ProcessInfo): Action<ProcessInfo> => ({
+    open: (processInfo: ProcessInfo): Action<ProcessInfo> => ({
         type: AppActions.Open,
-        payload: processInfo
+        payload: processInfo,
     }),
-    Focus: (processInfo: ProcessInfo): Action<ProcessInfo> => ({
+    focus: (processInfo: ProcessInfo): Action<ProcessInfo> => ({
         type: AppActions.Focus,
-        payload: processInfo
-    })
-}
+        payload: processInfo,
+    }),
+};

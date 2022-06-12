@@ -1,19 +1,15 @@
-import { Dispatch } from "react";
-import { Action } from "./actions";
-import { ProcessInfo } from "./types";
-
-export interface Dictionary<T> {
-    [Key: string]: T;
-}
+import { Dispatch } from 'react';
+import { Action } from './actions';
+import { ProcessInfo } from './types';
 
 export interface IAppState {
-    running: Dictionary<ProcessInfo>
+    running: Record<string, ProcessInfo>
     focused: string | undefined;
-}
+};
 
 export interface IAppContext {
     baseUrl: string;
     isOpen: (appId: string) => boolean;
     state: IAppState;
     dispatch: Dispatch<Action<any>>
-}
+};

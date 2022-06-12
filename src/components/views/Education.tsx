@@ -40,11 +40,11 @@ const Table = styled.table`
         }
         background-color: #000000;
     }
-`
+`;
 
 
 const Education: React.FC = () => {
-    return <FlexContainer direction={"column"}>
+    return <FlexContainer direction={'column'}>
         <Table>
             <tr>
                 <th>What</th>
@@ -75,7 +75,7 @@ const Education: React.FC = () => {
                 <td>2009 – 2011</td>
             </tr>
         </Table>
-    </FlexContainer>
-}
+    </FlexContainer>;
+};
 
 export default Education;

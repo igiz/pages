@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SmallImage = styled.img`
     width: 120px;
@@ -8,12 +8,12 @@ export const SmallImage = styled.img`
     margin: 1rem;
 `;
 
-export const FlexContainer = styled.div<{ direction: "row" | "column" }>`
+export const FlexContainer = styled.div<{ direction: 'row' | 'column' }>`
     display: flex;
-    flex-direction: ${props => props.direction};
+    flex-direction: ${(props) => props.direction};
     flex-basis: 100%;
 `;
 
 export const ColoredSpan = styled.span<{ color: string }>`
-    color: ${props => props.color};
+    color: ${(props) => props.color};
 `;

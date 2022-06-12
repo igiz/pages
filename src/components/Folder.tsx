@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 
 const Container = styled.div`
@@ -15,7 +15,7 @@ const ErrorHeader = styled.h1`
 export const Folder: React.FC = ({ children }) => {
     return <Container>
         <ErrorHeader>ACCESS DENIED: CHEEKY YOU!</ErrorHeader>
-    </Container>
-}
+    </Container>;
+};
 
 export default Folder;

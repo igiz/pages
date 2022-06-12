@@ -7,14 +7,14 @@ import { AppContextProvider } from './contexts/AppContext';
 import { AppLauncher } from './components/AppLauncher';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <AppContextProvider>
-      <Monitor>
-        <Computer dimensions={{ rows: 8, columns: 9 }}>
-          <AppLauncher />
-        </Computer >
-      </Monitor>
-    </AppContextProvider>
-  </React.StrictMode >,
-  document.getElementById('app')
+    <React.StrictMode>
+        <AppContextProvider>
+            <Monitor>
+                <Computer dimensions={{ rows: 8, columns: 9 }}>
+                    <AppLauncher />
+                </Computer >
+            </Monitor>
+        </AppContextProvider>
+    </React.StrictMode >,
+    document.getElementById('app'),
 );

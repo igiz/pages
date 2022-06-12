@@ -1,9 +1,9 @@
-import React, { forwardRef, useContext, useEffect, useState } from "react";
-import Draggable from "react-draggable";
-import styled from "styled-components";
-import { AppContext } from "../contexts/AppContext";
-import { Actions } from "../types/actions";
-import { ProcessInfo } from "../types/types";
+import React, { forwardRef, useContext, useEffect, useState } from 'react';
+import Draggable from 'react-draggable';
+import styled from 'styled-components';
+import { AppContext } from '../contexts/AppContext';
+import { Actions } from '../types/actions';
+import { ProcessInfo } from '../types/types';
 
 export interface IAppContainerProps {
     appInfo: ProcessInfo,
@@ -16,9 +16,9 @@ const WindowContainer = styled.div<{ borderColor: string }>`
     max-height: 95%;
     min-height: 95%;
     flex-direction: row;
-    border-bottom: 5px solid ${props => props.borderColor};
-    border-left: 5px solid ${props => props.borderColor};
-    border-right: 5px solid ${props => props.borderColor};
+    border-bottom: 5px solid ${(props) => props.borderColor};
+    border-left: 5px solid ${(props) => props.borderColor};
+    border-right: 5px solid ${(props) => props.borderColor};
     overflow-wrap: break-word;
     overflow-y: scroll;
     background-color: #292323;
@@ -41,19 +41,19 @@ const WindowHeader = styled.div<{ borderColor: string }>`
     display: flex;
     height: auto;
     flex-direction: row-reverse;
-    background-color: ${props => props.borderColor};
+    background-color: ${(props) => props.borderColor};
     padding-right: 5px;
     padding-top: 3px;
     padding-bottom: 3px;
 `;
 
 const MainContainer = styled.div<{ height: number | string, width: number | string, opacity: number, left: string }>`
-    width: ${props => props.width};
-    height: ${props => props.height};
+    width: ${(props) => props.width};
+    height: ${(props) => props.height};
     position: absolute;
-    left: ${props => props.left};
+    left: ${(props) => props.left};
     transition: opacity 0.5s, left 1s;
-    opacity: ${props => props.opacity};
+    opacity: ${(props) => props.opacity};
     top: 10%;
 `;
 
@@ -99,11 +99,11 @@ const Circle = styled.div`
 `;
 
 const ConsoleHeader: React.FC<{ appInfo: ProcessInfo, borderColor: string, onFocus: () => void }> = ({ appInfo, borderColor, onFocus }) => {
-    var { dispatch } = useContext(AppContext);
+    const { dispatch } = useContext(AppContext);
 
-    return <WindowHeader className={"handle"} borderColor={borderColor}>
+    return <WindowHeader className={'handle'} borderColor={borderColor}>
         <HeaderButton onMouseDown={(event) => {
-            dispatch(Actions.Close(appInfo));
+            dispatch(Actions.close(appInfo));
             event.preventDefault();
         }}>
             <Circle />
@@ -111,30 +111,31 @@ const ConsoleHeader: React.FC<{ appInfo: ProcessInfo, borderColor: string, onFoc
         <HeaderTitle>
             <HeaderText onMouseDown={onFocus}>{appInfo.name}</HeaderText>
         </HeaderTitle>
-    </WindowHeader>
-}
+    </WindowHeader>;
+};
+
 
 const Console = forwardRef<HTMLDivElement, React.PropsWithChildren<IAppContainerProps>>(({ appInfo, dimensions, onFocus, children }, ref) => {
     const { state } = useContext(AppContext);
     const [opacity, setOpacity] = useState<number>(0);
-    const [left, setLeft] = useState<string>("0%");
-    const borderColor = state.focused === appInfo.appId ? "#36ADAD" : "#235f5f";
+    const [left, setLeft] = useState<string>('0%');
+    const borderColor = state.focused === appInfo.appId ? '#36ADAD' : '#235f5f';
 
     useEffect(() => {
         setTimeout(() => {
             setOpacity(1);
-            setLeft("15%");
-        }, 50)
-    }, [])
+            setLeft('15%');
+        }, 50);
+    }, []);
 
-    return <Draggable bounds='parent' handle={".handle"}>
+    return <Draggable bounds='parent' handle={'.handle'}>
         <MainContainer height={dimensions.height} width={dimensions.width} opacity={opacity} left={left} ref={ref}>
             <ConsoleHeader appInfo={appInfo} onFocus={onFocus} borderColor={borderColor} />
             <WindowContainer onMouseDown={onFocus} borderColor={borderColor}>
                 {children}
             </WindowContainer>
         </MainContainer>
-    </Draggable >
+    </Draggable >;
 });
 
 export default Console;
