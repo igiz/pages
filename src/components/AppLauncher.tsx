@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../contexts/AppContext';
 import { Actions } from '../types/actions';
-import { cvApp } from '../types/appconstants';
+import { cvApp, happyCappy } from '../types/appconstants';
 import Console from './Console';
 import CvApp from './apps/cvapp/CvApp';
 import Folder from './Folder';
+import HappyCappy from './apps/HappyCappy';
 
 export const AppLauncher: React.FC = () => {
     const { state, dispatch } = useContext(AppContext);
@@ -39,14 +40,18 @@ export const AppLauncher: React.FC = () => {
                 const ref = React.createRef<HTMLDivElement>();
                 if (info.appId === cvApp.appId) {
                     running[info.appId] =
-                    <Console appInfo={info} dimensions={{ height: '450px', width: '950px' }} onFocus={() => dispatch(Actions.focus(info))} ref={ref}>
-                        <CvApp />
+                        <Console appInfo={info} dimensions={{ height: '450px', width: '950px' }} onFocus={() => dispatch(Actions.focus(info))} ref={ref}>
+                            <CvApp />
+                        </Console>;
+                } else if (info.appId == happyCappy.appId) {
+                    running[info.appId] = <Console appInfo={info} dimensions={{ height: '300px', width: '650px' }} onFocus={() => dispatch(Actions.focus(info))} ref={ref}>
+                        <HappyCappy />
                     </Console>;
                 } else if (info.appId.startsWith('Folder:')) {
                     running[info.appId] =
-                    <Console appInfo={info} dimensions={{ height: '135px', width: '500px' }} onFocus={() => dispatch(Actions.focus(info))} ref={ref}>
-                        <Folder />
-                    </Console>;
+                        <Console appInfo={info} dimensions={{ height: '135px', width: '500px' }} onFocus={() => dispatch(Actions.focus(info))} ref={ref}>
+                            <Folder />
+                        </Console>;
                 }
                 refs[info.appId] = ref;
             }

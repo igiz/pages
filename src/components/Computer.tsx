@@ -9,9 +9,10 @@ import folderIcon from '../assets/folder.svg';
 import computer from '../assets/computer-shiny.svg';
 import github from '../assets/github.svg';
 import console from '../assets/console.svg';
+import capybara from '../assets/capybara.svg';
 import { AppContext } from '../contexts/AppContext';
 import { Actions } from '../types/actions';
-import { cvApp, folder } from '../types/appconstants';
+import { cvApp, folder, happyCappy } from '../types/appconstants';
 
 const OperatingSystem = styled.div`
     display: flex;
@@ -138,9 +139,10 @@ const Computer: React.FC<{ dimensions: { rows: number, columns: number } }> = ({
                 <Wallpaper height="94%">
                     <SystemLogo />
                     <Grid rows={dimensions.rows} columns={dimensions.columns}>
-                        <Icon iconText="Computer" iconImage={computer} />
-                        <Icon iconText="Super Secret" iconImage={folderIcon} action={() => dispatch(Actions.open(folder('Super Secret')))} />
-                        <Icon iconText="CV App" iconImage={console} action={() => dispatch(Actions.open(cvApp))} />
+                        <Icon iconText='Computer' iconImage={computer} />
+                        <Icon iconText='Super Secret' iconImage={folderIcon} action={() => dispatch(Actions.open(folder('Super Secret')))} />
+                        <Icon iconText='CV App' iconImage={console} action={() => dispatch(Actions.open(cvApp))} />
+                        <Icon iconText='Happy Cappy' iconImage={capybara} action={() => dispatch(Actions.open(happyCappy))} column={dimensions.columns} />
                         {/** Push to the very end of the grid**/}
                         <Icon iconText="Source Code" iconImage={github} link={'https://github.com/igiz/pages/tree/master'} row={dimensions.rows} column={dimensions.columns} />
                     </Grid>

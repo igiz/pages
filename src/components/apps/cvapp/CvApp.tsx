@@ -107,7 +107,6 @@ const CvApp: React.FC = () => {
                 </NavigationContainer>
                 <ContentsContainer>
                     <FlexContainer direction={'row'}>
-
                         <Switch>
                             <Route path="/about">
                                 <About />
