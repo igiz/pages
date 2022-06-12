@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { ColoredSpan, FlexContainer, SmallImage } from '../Common';
-import profile from '../../assets/profile.jpg';
+import { ColoredSpan, FlexContainer, SmallImage } from '../../../Common';
+import profile from '../../../../assets/profile.jpg';
 
 const Container = styled(FlexContainer)`
     img {

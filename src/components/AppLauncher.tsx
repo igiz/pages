@@ -3,7 +3,7 @@ import { AppContext } from '../contexts/AppContext';
 import { Actions } from '../types/actions';
 import { cvApp } from '../types/appconstants';
 import Console from './Console';
-import CvApp from './CvApp';
+import CvApp from './apps/cvapp/CvApp';
 import Folder from './Folder';
 
 export const AppLauncher: React.FC = () => {

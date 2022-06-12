@@ -12,7 +12,7 @@ const ErrorHeader = styled.h1`
     color: red;
 `;
 
-export const Folder: React.FC = ({ children }) => {
+export const Folder: React.FC = () => {
     return <Container>
         <ErrorHeader>ACCESS DENIED: CHEEKY YOU!</ErrorHeader>
     </Container>;

@@ -33,7 +33,7 @@ const useAppReducer = () => {
 
 export const AppContextProvider: React.FC = ({ children }) => {
     const [state, dispatch] = useAppReducer();
-    const [baseUrl] = useState(window.location.origin);
+    const [baseUrl] = useState(window.location.origin);// Need a better way to set the base uri
 
     return <AppContext.Provider value={{
         baseUrl,

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled
     from 'styled-components';
-import { FlexContainer } from '../Common';
+import { FlexContainer } from '../../../Common';
 
 const Table = styled.table`
     width: 100%;
