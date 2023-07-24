@@ -18,8 +18,8 @@ const OperatingSystem = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 1280px;
-    height: 720px;
+    width: 100%;
+    height: 100%;
 `;
 
 const Desktop = styled.div`
@@ -41,6 +41,7 @@ const LogoText = styled.p`
     align-self: flex-end;
     color: #8D8080;
     white-space: nowrap;
+    font-size: 4vh;
 `;
 
 const Logo = styled.div`
@@ -60,6 +61,7 @@ const IconImage = styled.img`
 const IconText = styled.p`
     color: white;
     margin: 0;
+    font-size: 2vh;
 `;
 
 const Grid = styled.div<{ rows: number, columns: number }>`
@@ -97,6 +99,8 @@ const Link = styled.a <{ row?: number, column?: number }> `
 `;
 
 const RotatingImage = styled.img`
+    height: 20vh;
+    width: 20vh;
     filter: drop-shadow(5px 2.5px 1px);
     animation: flip 10s steps(360) infinite;
     @keyframes flip {

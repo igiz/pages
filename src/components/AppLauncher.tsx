@@ -5,7 +5,7 @@ import { cvApp, happyCappy } from '../types/appconstants';
 import Console from './Console';
 import CvApp from './apps/cvapp/CvApp';
 import Folder from './Folder';
-import HappyCappy from './apps/HappyCappy';
+import CappyGame from './apps/CappyGame';
 
 export const AppLauncher: React.FC = () => {
     const { state, dispatch } = useContext(AppContext);
@@ -40,16 +40,16 @@ export const AppLauncher: React.FC = () => {
                 const ref = React.createRef<HTMLDivElement>();
                 if (info.appId === cvApp.appId) {
                     running[info.appId] =
-                        <Console appInfo={info} dimensions={{ height: '450px', width: '950px' }} onFocus={() => dispatch(Actions.focus(info))} ref={ref}>
+                        <Console appInfo={info} dimensions={{ height: '80%', width: '80%' }} onFocus={() => dispatch(Actions.focus(info))} ref={ref}>
                             <CvApp />
                         </Console>;
                 } else if (info.appId == happyCappy.appId) {
-                    running[info.appId] = <Console appInfo={info} dimensions={{ height: '300px', width: '650px' }} onFocus={() => dispatch(Actions.focus(info))} ref={ref}>
-                        <HappyCappy />
+                    running[info.appId] = <Console appInfo={info} dimensions={{ height: '50%', width: '50%' }} onFocus={() => dispatch(Actions.focus(info))} ref={ref}>
+                        <CappyGame />
                     </Console>;
                 } else if (info.appId.startsWith('Folder:')) {
                     running[info.appId] =
-                        <Console appInfo={info} dimensions={{ height: '135px', width: '500px' }} onFocus={() => dispatch(Actions.focus(info))} ref={ref}>
+                        <Console appInfo={info} dimensions={{ height: '20%', width: '50%' }} onFocus={() => dispatch(Actions.focus(info))} ref={ref}>
                             <Folder />
                         </Console>;
                 }

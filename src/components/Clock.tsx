@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 const Time = styled.div`
     display: flex;
-    align-items: center;
-    font-size: 19pt;
+    align-items: 70%;
     padding: 0 1rem 0 1rem;
+    font-size: 3vh;
 `;
 
 const Clock: React.FC = () => {
